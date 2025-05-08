@@ -21,6 +21,8 @@ public class Store {
 
     private String address;
 
+    private Float score;
+
     private Long latitude;
 
     private Long longitude;
@@ -29,11 +31,11 @@ public class Store {
     @JoinColumn(name = "region_id")
     private Region region;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mission_id")
-    private Mission mission;
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Mission> missions = new ArrayList<>();
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
+
 
 }

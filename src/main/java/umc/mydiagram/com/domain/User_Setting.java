@@ -21,7 +21,4 @@ public class User_Setting extends BaseEntity {
 
     private boolean notice_way; // 알람 표시 여부
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 }

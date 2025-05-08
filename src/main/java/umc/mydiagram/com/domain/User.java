@@ -59,11 +59,14 @@ public class User extends BaseEntity {
     private List<UserMission> userMissionList = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Point> PointList = new ArrayList<>();
+    private List<Point> Point_List = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "notice_id")
     private Notification notice;
     // 원래 notification 테이블에 user_id를 외래키로 하고 참조를 하였는데,
     // User 테이블에서 notification 테이블을 참조하는 것이 더 좋을거 같아서 바꾸게 되었습니다
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "setting_id")
+    private User_Setting userSetting;
 }

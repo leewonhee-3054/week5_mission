@@ -5,6 +5,7 @@ import lombok.*;
 import umc.mydiagram.com.domain.base.BaseEntity;
 import umc.mydiagram.com.domain.mapping.UserMission;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,22 @@ public class Mission extends BaseEntity {
     @Column(nullable = false)
     private int points;
 
-    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
-    private List<UserMission> userMissionList = new ArrayList<>();
+    @Column(nullable = false)
+    private LocalDateTime deadline;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id")
+    private Store store;
+
+    @Override
+    public String toString() {
+        return "Mission{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", points=" + points +
+                ", deadline=" + deadline +
+                ", store=" + store +
+                '}';
+    }
 }
